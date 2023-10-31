@@ -6,7 +6,7 @@ RUN apt update \
   && pecl install apcu \
   && docker-php-ext-install pdo_mysql zip xsl intl \
   && docker-php-ext-configure zip \
-  && docker-php-ext-enable apcu
+  && docker-php-ext-enable apcu pdo_mysql zip xsl intl
 
 WORKDIR /usr/src/app
 COPY ./ /usr/src/app
