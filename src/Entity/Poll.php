@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Repository\PollRepository;
 use App\State\CreatePollProcessor;
@@ -23,6 +25,10 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Post(
             processor: CreatePollProcessor::class,
         ),
+        new GetCollection(),
+        new Get(
+            security: 'object.getOwner() === user',
+        )
     ]
 )]
 class Poll
