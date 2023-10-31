@@ -27,6 +27,10 @@ class Option
     #[ORM\JoinColumn(nullable: false)]
     private Poll $poll;
 
+    #[ORM\Column(options: ['default' => 0])]
+    #[Groups(['poll:read'])]
+    private int $voteCount = 0;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +56,25 @@ class Option
     public function setPoll(Poll $poll): static
     {
         $this->poll = $poll;
+
+        return $this;
+    }
+
+    public function getVoteCount(): int
+    {
+        return $this->voteCount;
+    }
+
+    public function setVoteCount(int $voteCount): static
+    {
+        $this->voteCount = $voteCount;
+
+        return $this;
+    }
+
+    public function incrementVoteCount(): static
+    {
+        ++$this->voteCount;
 
         return $this;
     }

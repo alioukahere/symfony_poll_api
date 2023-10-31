@@ -62,6 +62,10 @@ class Poll
     #[ORM\JoinColumn(nullable: false)]
     private User $owner;
 
+    #[ORM\Column(options: ['default' => 0])]
+    #[Groups(['poll:read'])]
+    private int $totalVotes = 0;
+
     public function __construct()
     {
         $this->options = new ArrayCollection();
@@ -128,6 +132,25 @@ class Poll
     public function setOwner(User $owner): static
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getTotalVotes(): int
+    {
+        return $this->totalVotes;
+    }
+
+    public function setTotalVotes(int $totalVotes): static
+    {
+        $this->totalVotes = $totalVotes;
+
+        return $this;
+    }
+
+    public function incrementTotalVotes(): static
+    {
+        ++$this->totalVotes;
 
         return $this;
     }
