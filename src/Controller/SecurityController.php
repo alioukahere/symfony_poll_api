@@ -26,4 +26,10 @@ class SecurityController extends AbstractController
             'message' => 'Authentication successful',
         ]);
     }
+
+    #[Route('/api/logout', name: 'app_logout', methods: ['GET'])]
+    public function logout(): never
+    {
+        throw new LogicException('Don\'t forget to activate logout in security.yaml');
+    }
 }

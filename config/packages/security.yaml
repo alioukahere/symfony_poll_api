@@ -21,7 +21,7 @@ security:
                 provider: app_user_provider
                 username_path: email
             logout:
-                path: /api/logout
+                path: app_logout
                 invalidate_session: true
                 delete_cookies: true
 
